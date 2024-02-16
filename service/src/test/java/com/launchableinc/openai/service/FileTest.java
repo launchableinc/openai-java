@@ -2,6 +2,9 @@ package com.launchableinc.openai.service;
 
 import com.launchableinc.openai.DeleteResult;
 import com.launchableinc.openai.file.File;
+import java.time.Duration;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -22,9 +25,17 @@ public class FileTest {
 
 	static String filePath = "src/test/resources/fine-tuning-data.jsonl";
 
-	String token = System.getenv("OPENAI_TOKEN");
-	OpenAiService service = new OpenAiService(token);
 	static String fileId;
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
+
 
 	@Test
 	@Order(1)

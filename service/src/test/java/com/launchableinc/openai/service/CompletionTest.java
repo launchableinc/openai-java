@@ -3,6 +3,8 @@ package com.launchableinc.openai.service;
 import com.launchableinc.openai.completion.CompletionChoice;
 import com.launchableinc.openai.completion.CompletionChunk;
 import com.launchableinc.openai.completion.CompletionRequest;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,8 +16,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CompletionTest {
 
-	String token = System.getenv("OPENAI_TOKEN");
-	OpenAiService service = new OpenAiService(token);
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
+
 
 	@Test
 	void createCompletion() {

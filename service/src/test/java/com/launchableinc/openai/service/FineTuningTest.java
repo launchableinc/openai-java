@@ -14,14 +14,18 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FineTuningTest {
 
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
 	static OpenAiService service;
+
 	static String fileId;
 	static String fineTuningJobId;
 
 
 	@BeforeAll
 	static void setup() throws Exception {
-		String token = System.getenv("OPENAI_TOKEN");
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+
 		service = new OpenAiService(token);
 		fileId = service.uploadFile("fine-tune", "src/test/resources/chat-fine-tuning-data.jsonl")
 				.getId();
@@ -32,6 +36,8 @@ public class FineTuningTest {
 
 	@AfterAll
 	static void teardown() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+
 		try {
 			service.deleteFile(fileId);
 		} catch (Exception e) {

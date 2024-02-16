@@ -17,13 +17,23 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AssistantTest {
 
-	static OpenAiService service = new OpenAiService(System.getenv("OPENAI_TOKEN"));
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
 	static String assistantId;
 	static String fileId;
 
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
 
 	@AfterAll
 	static void teardown() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		OpenAiService service = new OpenAiService(token);
 		try {
 			service.deleteAssistantFile(assistantId, fileId);
 		} catch (Exception e) {

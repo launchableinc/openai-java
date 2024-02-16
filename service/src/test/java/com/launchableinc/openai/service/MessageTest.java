@@ -8,6 +8,7 @@ import com.launchableinc.openai.messages.MessageRequest;
 import com.launchableinc.openai.messages.ModifyMessageRequest;
 import com.launchableinc.openai.threads.ThreadRequest;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -22,13 +23,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MessageTest {
 
+
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
 	static OpenAiService service;
 
 	static String threadId;
 
 	@BeforeAll
 	static void setup() {
-		String token = System.getenv("OPENAI_TOKEN");
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+
 		service = new OpenAiService(token);
 
 		ThreadRequest threadRequest = ThreadRequest.builder()

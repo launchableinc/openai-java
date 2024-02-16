@@ -26,6 +26,8 @@ import com.launchableinc.openai.runs.ToolCall;
 import com.launchableinc.openai.threads.Thread;
 import com.launchableinc.openai.threads.ThreadRequest;
 import com.launchableinc.openai.utils.TikTokensUtil;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -33,17 +35,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class AssistantFunctionTest {
 
-	String token = System.getenv("OPENAI_TOKEN");
-	OpenAiService service = new OpenAiService(token, Duration.ofMinutes(1));
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token, Duration.ofMinutes(1));
+	}
+
 
 	@Test
 	void createRetrieveRun() throws JsonProcessingException {
-
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

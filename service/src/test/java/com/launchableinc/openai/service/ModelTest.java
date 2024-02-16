@@ -1,6 +1,8 @@
 package com.launchableinc.openai.service;
 
 import com.launchableinc.openai.model.Model;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,8 +13,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ModelTest {
 
-	String token = System.getenv("OPENAI_TOKEN");
-	com.launchableinc.openai.service.OpenAiService service = new OpenAiService(token);
+
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
 
 	@Test
 	void listModels() {

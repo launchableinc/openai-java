@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.launchableinc.openai.completion.chat.*;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -12,6 +14,17 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChatCompletionTest {
+
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
+
 
 	static class Weather {
 
@@ -42,8 +55,6 @@ class ChatCompletionTest {
 		}
 	}
 
-	String token = System.getenv("OPENAI_TOKEN");
-	OpenAiService service = new OpenAiService(token);
 
 	@Test
 	void createChatCompletion() {

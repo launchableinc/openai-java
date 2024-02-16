@@ -4,6 +4,8 @@ import com.launchableinc.openai.image.CreateImageEditRequest;
 import com.launchableinc.openai.image.CreateImageRequest;
 import com.launchableinc.openai.image.CreateImageVariationRequest;
 import com.launchableinc.openai.image.Image;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -19,9 +21,15 @@ public class ImageTest {
 	static String fileWithAlphaPath = "src/test/resources/penguin_with_alpha.png";
 	static String maskPath = "src/test/resources/mask.png";
 
-	String token = System.getenv("OPENAI_TOKEN");
-	com.launchableinc.openai.service.OpenAiService service = new OpenAiService(token,
-			Duration.ofSeconds(30));
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token, Duration.ofSeconds(30));
+	}
 
 	@Test
 	void createImageUrl() {

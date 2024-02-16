@@ -4,6 +4,8 @@ import com.launchableinc.openai.DeleteResult;
 import com.launchableinc.openai.messages.MessageRequest;
 import com.launchableinc.openai.threads.Thread;
 import com.launchableinc.openai.threads.ThreadRequest;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -16,10 +18,17 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ThreadTest {
 
-	String token = System.getenv("OPENAI_TOKEN");
-	OpenAiService service = new OpenAiService(token);
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
 
 	static String threadId;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
 
 	@Test
 	@Order(1)

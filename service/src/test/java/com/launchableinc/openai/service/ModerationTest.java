@@ -2,6 +2,8 @@ package com.launchableinc.openai.service;
 
 import com.launchableinc.openai.moderation.Moderation;
 import com.launchableinc.openai.moderation.ModerationRequest;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,8 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ModerationTest {
 
-	String token = System.getenv("OPENAI_TOKEN");
-	com.launchableinc.openai.service.OpenAiService service = new OpenAiService(token);
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
 
 	@Test
 	void createModeration() {

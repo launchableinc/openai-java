@@ -5,6 +5,8 @@ import com.launchableinc.openai.audio.CreateTranscriptionRequest;
 import com.launchableinc.openai.audio.CreateTranslationRequest;
 import com.launchableinc.openai.audio.TranscriptionResult;
 import com.launchableinc.openai.audio.TranslationResult;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -22,8 +24,14 @@ public class AudioTest {
 
 	static String koreanAudioFilePath = "src/test/resources/korean-hello.mp3";
 
-	String token = System.getenv("OPENAI_TOKEN");
-	OpenAiService service = new OpenAiService(token, Duration.ofSeconds(30));
+	static final private String token = System.getenv("OPENAI_TOKEN");
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token, Duration.ofSeconds(30));
+	}
 
 	@Test
 	void createTranscription() {

@@ -10,6 +10,8 @@ import com.launchableinc.openai.runs.RunCreateRequest;
 import com.launchableinc.openai.threads.Thread;
 import com.launchableinc.openai.threads.ThreadRequest;
 import com.launchableinc.openai.utils.TikTokensUtil;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
@@ -20,8 +22,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class RunTest {
 
-	String token = System.getenv("OPENAI_TOKEN");
-	OpenAiService service = new OpenAiService(token);
+	static final private String token = System.getenv("OPENAI_TOKEN");
+
+	static OpenAiService service;
+
+	@BeforeAll
+	static void setup() {
+		Assumptions.assumeTrue(token != null && !token.isEmpty());
+		service = new OpenAiService(token);
+	}
 
 	@Test
 	@Timeout(10)
