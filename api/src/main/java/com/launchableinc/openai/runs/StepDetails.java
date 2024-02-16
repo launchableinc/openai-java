@@ -1,4 +1,4 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -14,12 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 public class StepDetails {
 
-    
-    private String type;
 
-    @JsonProperty("message_creation")
-    private MessageCreation messageCreation;
+	private String type;
 
-    @JsonProperty("tool_calls")
-    private List<ToolCall> toolCalls;
+	@JsonProperty("message_creation")
+	private MessageCreation messageCreation;
+
+	@JsonProperty("tool_calls")
+	private List<ToolCall> toolCalls;
 }

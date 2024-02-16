@@ -1,8 +1,8 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.theokanning.openai.assistants.Tool;
-import com.theokanning.openai.threads.ThreadRequest;
+import com.launchableinc.openai.assistants.Tool;
+import com.launchableinc.openai.threads.ThreadRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,17 +23,17 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateThreadAndRunRequest {
-    
-    @JsonProperty("assistant_id")
-    private String assistantId;
-    
-    private ThreadRequest thread;
 
-    private String model;
-    
-    private String instructions;
+	@JsonProperty("assistant_id")
+	private String assistantId;
 
-    private List<Tool> tools;
+	private ThreadRequest thread;
 
-    private Map<String, String> metadata;
+	private String model;
+
+	private String instructions;
+
+	private List<Tool> tools;
+
+	private Map<String, String> metadata;
 }

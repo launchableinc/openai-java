@@ -1,4 +1,4 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RequiredAction {
-    
-    private String type;
 
-    @JsonProperty("submit_tool_outputs")
-    private SubmitToolOutputs submitToolOutputs;
+	private String type;
+
+	@JsonProperty("submit_tool_outputs")
+	private SubmitToolOutputs submitToolOutputs;
 }

@@ -1,6 +1,6 @@
-package com.theokanning.openai.service;
+package com.launchableinc.openai.service;
 
-import com.theokanning.openai.model.Model;
+import com.launchableinc.openai.model.Model;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -11,21 +11,21 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ModelTest {
 
-    String token = System.getenv("OPENAI_TOKEN");
-    com.theokanning.openai.service.OpenAiService service = new OpenAiService(token);
+	String token = System.getenv("OPENAI_TOKEN");
+	com.launchableinc.openai.service.OpenAiService service = new OpenAiService(token);
 
-    @Test
-    void listModels() {
-        List<Model> models = service.listModels();
+	@Test
+	void listModels() {
+		List<Model> models = service.listModels();
 
-        assertFalse(models.isEmpty());
-    }
+		assertFalse(models.isEmpty());
+	}
 
-    @Test
-    void getModel() {
-        Model model = service.getModel("babbage-002");
+	@Test
+	void getModel() {
+		Model model = service.getModel("babbage-002");
 
-        assertEquals("babbage-002", model.id);
-        assertEquals("system", model.ownedBy);
-    }
+		assertEquals("babbage-002", model.id);
+		assertEquals("system", model.ownedBy);
+	}
 }

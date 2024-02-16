@@ -1,7 +1,7 @@
-package com.theokanning.openai.service;
+package com.launchableinc.openai.service;
 
-import com.theokanning.openai.DeleteResult;
-import com.theokanning.openai.file.File;
+import com.launchableinc.openai.DeleteResult;
+import com.launchableinc.openai.file.File;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -19,53 +19,54 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FileTest {
-    static String filePath = "src/test/resources/fine-tuning-data.jsonl";
 
-    String token = System.getenv("OPENAI_TOKEN");
-    OpenAiService service = new OpenAiService(token);
-    static String fileId;
+	static String filePath = "src/test/resources/fine-tuning-data.jsonl";
 
-    @Test
-    @Order(1)
-    void uploadFile() throws Exception {
-        File file = service.uploadFile("fine-tune", filePath);
-        fileId = file.getId();
+	String token = System.getenv("OPENAI_TOKEN");
+	OpenAiService service = new OpenAiService(token);
+	static String fileId;
 
-        assertEquals("fine-tune", file.getPurpose());
-        assertEquals(filePath, file.getFilename());
+	@Test
+	@Order(1)
+	void uploadFile() throws Exception {
+		File file = service.uploadFile("fine-tune", filePath);
+		fileId = file.getId();
 
-        // wait for file to be processed
-        TimeUnit.SECONDS.sleep(10);
-    }
+		assertEquals("fine-tune", file.getPurpose());
+		assertEquals(filePath, file.getFilename());
 
-    @Test
-    @Order(2)
-    void listFiles() {
-        List<File> files = service.listFiles();
+		// wait for file to be processed
+		TimeUnit.SECONDS.sleep(10);
+	}
 
-        assertTrue(files.stream().anyMatch(file -> file.getId().equals(fileId)));
-    }
+	@Test
+	@Order(2)
+	void listFiles() {
+		List<File> files = service.listFiles();
 
-    @Test
-    @Order(3)
-    void retrieveFile() {
-        File file = service.retrieveFile(fileId);
+		assertTrue(files.stream().anyMatch(file -> file.getId().equals(fileId)));
+	}
 
-        assertEquals(filePath, file.getFilename());
-    }
+	@Test
+	@Order(3)
+	void retrieveFile() {
+		File file = service.retrieveFile(fileId);
 
-    @Test
-    @Order(4)
-    void retrieveFileContent() throws IOException {
-        String fileBytesToString = service.retrieveFileContent(fileId).string();
-        String contents = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
-        assertEquals(contents, fileBytesToString);
-    }
+		assertEquals(filePath, file.getFilename());
+	}
 
-    @Test
-    @Order(5)
-    void deleteFile() {
-        DeleteResult result = service.deleteFile(fileId);
-        assertTrue(result.isDeleted());
-    }
+	@Test
+	@Order(4)
+	void retrieveFileContent() throws IOException {
+		String fileBytesToString = service.retrieveFileContent(fileId).string();
+		String contents = new String(Files.readAllBytes(Paths.get(filePath)), StandardCharsets.UTF_8);
+		assertEquals(contents, fileBytesToString);
+	}
+
+	@Test
+	@Order(5)
+	void deleteFile() {
+		DeleteResult result = service.deleteFile(fileId);
+		assertTrue(result.isDeleted());
+	}
 }

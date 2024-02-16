@@ -1,4 +1,4 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ToolCallFunction {
-    
-    private String name;
-    
-    private String arguments;
-    
-    private String output;
+
+	private String name;
+
+	private String arguments;
+
+	private String output;
 }

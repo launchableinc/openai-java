@@ -1,15 +1,15 @@
-package com.theokanning.openai.service;
+package com.launchableinc.openai.service;
 
-import com.theokanning.openai.OpenAiResponse;
-import com.theokanning.openai.assistants.Assistant;
-import com.theokanning.openai.assistants.AssistantRequest;
-import com.theokanning.openai.messages.Message;
-import com.theokanning.openai.messages.MessageRequest;
-import com.theokanning.openai.runs.Run;
-import com.theokanning.openai.runs.RunCreateRequest;
-import com.theokanning.openai.threads.Thread;
-import com.theokanning.openai.threads.ThreadRequest;
-import com.theokanning.openai.utils.TikTokensUtil;
+import com.launchableinc.openai.OpenAiResponse;
+import com.launchableinc.openai.assistants.Assistant;
+import com.launchableinc.openai.assistants.AssistantRequest;
+import com.launchableinc.openai.messages.Message;
+import com.launchableinc.openai.messages.MessageRequest;
+import com.launchableinc.openai.runs.Run;
+import com.launchableinc.openai.runs.RunCreateRequest;
+import com.launchableinc.openai.threads.Thread;
+import com.launchableinc.openai.threads.ThreadRequest;
+import com.launchableinc.openai.utils.TikTokensUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
@@ -19,51 +19,52 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class RunTest {
-    String token = System.getenv("OPENAI_TOKEN");
-    OpenAiService service = new OpenAiService(token);
 
-    @Test
-    @Timeout(10)
-    void createRetrieveRun() {
-        AssistantRequest assistantRequest = AssistantRequest.builder()
-                .model(TikTokensUtil.ModelEnum.GPT_4_1106_preview.getName())
-                .name("MATH_TUTOR")
-                .instructions("You are a personal Math Tutor.")
-                .build();
-        Assistant assistant = service.createAssistant(assistantRequest);
+	String token = System.getenv("OPENAI_TOKEN");
+	OpenAiService service = new OpenAiService(token);
 
-        ThreadRequest threadRequest = ThreadRequest.builder()
-                .build();
-        Thread thread = service.createThread(threadRequest);
+	@Test
+	@Timeout(10)
+	void createRetrieveRun() {
+		AssistantRequest assistantRequest = AssistantRequest.builder()
+				.model(TikTokensUtil.ModelEnum.GPT_4_1106_preview.getName())
+				.name("MATH_TUTOR")
+				.instructions("You are a personal Math Tutor.")
+				.build();
+		Assistant assistant = service.createAssistant(assistantRequest);
 
-        MessageRequest messageRequest = MessageRequest.builder()
-                .content("Hello")
-                .build();
+		ThreadRequest threadRequest = ThreadRequest.builder()
+				.build();
+		Thread thread = service.createThread(threadRequest);
 
-        Message message = service.createMessage(thread.getId(), messageRequest);
+		MessageRequest messageRequest = MessageRequest.builder()
+				.content("Hello")
+				.build();
 
-        RunCreateRequest runCreateRequest = RunCreateRequest.builder()
-                .assistantId(assistant.getId())
-                .build();
+		Message message = service.createMessage(thread.getId(), messageRequest);
 
-        Run run = service.createRun(thread.getId(), runCreateRequest);
-        assertNotNull(run);
+		RunCreateRequest runCreateRequest = RunCreateRequest.builder()
+				.assistantId(assistant.getId())
+				.build();
 
-        Run retrievedRun;
-        do {
-            retrievedRun = service.retrieveRun(thread.getId(), run.getId());
-            assertEquals(run.getId(), retrievedRun.getId());
-        }
-        while (!(retrievedRun.getStatus().equals("completed")) && !(retrievedRun.getStatus().equals("failed")));
+		Run run = service.createRun(thread.getId(), runCreateRequest);
+		assertNotNull(run);
 
+		Run retrievedRun;
+		do {
+			retrievedRun = service.retrieveRun(thread.getId(), run.getId());
+			assertEquals(run.getId(), retrievedRun.getId());
+		}
+		while (!(retrievedRun.getStatus().equals("completed")) && !(retrievedRun.getStatus()
+				.equals("failed")));
 
-        assertNotNull(retrievedRun);
+		assertNotNull(retrievedRun);
 
-        OpenAiResponse<Message> response = service.listMessages(thread.getId());
+		OpenAiResponse<Message> response = service.listMessages(thread.getId());
 
-        List<Message> messages = response.getData();
-        assertEquals(2, messages.size());
-        assertEquals("user", messages.get(1).getRole());
-        assertEquals("assistant", messages.get(0).getRole());
-    }
+		List<Message> messages = response.getData();
+		assertEquals(2, messages.size());
+		assertEquals("user", messages.get(1).getRole());
+		assertEquals("assistant", messages.get(0).getRole());
+	}
 }

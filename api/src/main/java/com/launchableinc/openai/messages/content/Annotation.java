@@ -1,4 +1,4 @@
-package com.theokanning.openai.messages.content;
+package com.launchableinc.openai.messages.content;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -14,31 +14,32 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Annotation {
-    /**
-     * The type of annotation, either file_citation or file_path
-     */
-    String type;
 
-    /**
-     * The text in the message content that needs to be replaced
-     */
-    String text;
+	/**
+	 * The type of annotation, either file_citation or file_path
+	 */
+	String type;
 
-    /**
-     * File citation details, only present when type == file_citation
-     */
-    @JsonProperty("file_citation")
-    FileCitation fileCitation;
+	/**
+	 * The text in the message content that needs to be replaced
+	 */
+	String text;
 
-    /**
-     * File path details, only present when type == file_path
-     */
-    @JsonProperty("file_path")
-    FilePath filePath;
+	/**
+	 * File citation details, only present when type == file_citation
+	 */
+	@JsonProperty("file_citation")
+	FileCitation fileCitation;
 
-    @JsonProperty("start_index")
-    int startIndex;
+	/**
+	 * File path details, only present when type == file_path
+	 */
+	@JsonProperty("file_path")
+	FilePath filePath;
 
-    @JsonProperty("end_index")
-    int endIndex;
+	@JsonProperty("start_index")
+	int startIndex;
+
+	@JsonProperty("end_index")
+	int endIndex;
 }

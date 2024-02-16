@@ -1,8 +1,8 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.theokanning.openai.assistants.Tool;
-import com.theokanning.openai.common.LastError;
+import com.launchableinc.openai.assistants.Tool;
+import com.launchableinc.openai.common.LastError;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,50 +17,50 @@ import java.util.Map;
 @AllArgsConstructor
 public class Run {
 
-    private String id;
+	private String id;
 
-    private String object;
+	private String object;
 
-    @JsonProperty("created_at")
-    private Integer createdAt;
+	@JsonProperty("created_at")
+	private Integer createdAt;
 
-    @JsonProperty("thread_id")
-    private String threadId;
+	@JsonProperty("thread_id")
+	private String threadId;
 
-    @JsonProperty("assistant_id")
-    private String assistantId;
+	@JsonProperty("assistant_id")
+	private String assistantId;
 
-    private String status;
+	private String status;
 
-    @JsonProperty("required_action")
-    private RequiredAction requiredAction;
+	@JsonProperty("required_action")
+	private RequiredAction requiredAction;
 
-    @JsonProperty("last_error")
-    private LastError lastError;
+	@JsonProperty("last_error")
+	private LastError lastError;
 
-    @JsonProperty("expires_at")
-    private Integer expiresAt;
+	@JsonProperty("expires_at")
+	private Integer expiresAt;
 
-    @JsonProperty("started_at")
-    private Integer startedAt;
-    
-    @JsonProperty("cancelled_at")
-    private Integer cancelledAt;
+	@JsonProperty("started_at")
+	private Integer startedAt;
 
-    @JsonProperty("failed_at")
-    private Integer failedAt;
-    
-    @JsonProperty("completed_at")
-    private Integer completedAt;
+	@JsonProperty("cancelled_at")
+	private Integer cancelledAt;
 
-    private String model;
+	@JsonProperty("failed_at")
+	private Integer failedAt;
 
-    private String instructions;
+	@JsonProperty("completed_at")
+	private Integer completedAt;
 
-    private List<Tool> tools;
-    
-    @JsonProperty("file_ids")
-    private List<String> fileIds;
+	private String model;
 
-    private Map<String, String> metadata;
+	private String instructions;
+
+	private List<Tool> tools;
+
+	@JsonProperty("file_ids")
+	private List<String> fileIds;
+
+	private Map<String, String> metadata;
 }

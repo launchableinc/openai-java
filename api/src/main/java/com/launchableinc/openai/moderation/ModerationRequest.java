@@ -1,10 +1,10 @@
-package com.theokanning.openai.moderation;
+package com.launchableinc.openai.moderation;
 
 import lombok.*;
 
 /**
  * A request for OpenAi to detect if text violates OpenAi's content policy.
- *
+ * <p>
  * https://beta.openai.com/docs/api-reference/moderations/create
  */
 @Builder
@@ -13,14 +13,14 @@ import lombok.*;
 @Data
 public class ModerationRequest {
 
-    /**
-     * The input text to classify.
-     */
-    @NonNull
-    String input;
+	/**
+	 * The input text to classify.
+	 */
+	@NonNull
+	String input;
 
-    /**
-     * The name of the model to use, defaults to text-moderation-stable.
-     */
-    String model;
+	/**
+	 * The name of the model to use, defaults to text-moderation-stable.
+	 */
+	String model;
 }

@@ -1,4 +1,4 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MessageCreation {
-    
-    @JsonProperty("message_id")
-    String messageId;
+
+	@JsonProperty("message_id")
+	String messageId;
 }

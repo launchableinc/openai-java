@@ -1,4 +1,4 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubmitToolOutputs {
-    
-    @JsonProperty("tool_calls")
-    List<ToolCall> toolCalls;
+
+	@JsonProperty("tool_calls")
+	List<ToolCall> toolCalls;
 }

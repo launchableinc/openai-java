@@ -1,15 +1,16 @@
-package com.theokanning.openai;
+package com.launchableinc.openai;
 
 /**
  * OkHttp Interceptor that adds an authorization token header
- * 
- * @deprecated Use {@link com.theokanning.openai.client.AuthenticationInterceptor}
+ *
+ * @deprecated Use {@link com.launchableinc.openai.client.AuthenticationInterceptor}
  */
 @Deprecated
-public class AuthenticationInterceptor extends com.theokanning.openai.client.AuthenticationInterceptor {
+public class AuthenticationInterceptor extends
+		com.launchableinc.openai.client.AuthenticationInterceptor {
 
-    AuthenticationInterceptor(String token) {
-        super(token);
-    }
+	AuthenticationInterceptor(String token) {
+		super(token);
+	}
 
 }

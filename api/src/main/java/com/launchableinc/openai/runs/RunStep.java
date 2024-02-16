@@ -1,7 +1,7 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.theokanning.openai.common.LastError;
+import com.launchableinc.openai.common.LastError;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,44 +15,44 @@ import java.util.Map;
 @Data
 public class RunStep {
 
-    private String id;
+	private String id;
 
-    private String object;
+	private String object;
 
-    @JsonProperty("created_at")
-    private Integer createdAt;
-    
-    @JsonProperty("assistant_id")
-    private String assistantId;
+	@JsonProperty("created_at")
+	private Integer createdAt;
 
-    @JsonProperty("thread_id")
-    private String threadId;
+	@JsonProperty("assistant_id")
+	private String assistantId;
 
-    @JsonProperty("run_id")
-    private String runId;
+	@JsonProperty("thread_id")
+	private String threadId;
 
-    private String type;
-    
-    private String status;
+	@JsonProperty("run_id")
+	private String runId;
 
-    @JsonProperty("step_details")
-    private StepDetails stepDetails;
+	private String type;
 
-    @JsonProperty("last_error")
-    private LastError lastError;
+	private String status;
 
-    @JsonProperty("expired_at")
-    private Integer expiredAt;
-    
-    @JsonProperty("cancelled_at")
-    private Integer cancelledAt;
+	@JsonProperty("step_details")
+	private StepDetails stepDetails;
 
-    @JsonProperty("failed_at")
-    private Integer failedAt;
-    
-    @JsonProperty("completed_at")
-    private Integer completedAt;
-    
-    private Map<String, String> metadata;
-    
+	@JsonProperty("last_error")
+	private LastError lastError;
+
+	@JsonProperty("expired_at")
+	private Integer expiredAt;
+
+	@JsonProperty("cancelled_at")
+	private Integer cancelledAt;
+
+	@JsonProperty("failed_at")
+	private Integer failedAt;
+
+	@JsonProperty("completed_at")
+	private Integer completedAt;
+
+	private Map<String, String> metadata;
+
 }

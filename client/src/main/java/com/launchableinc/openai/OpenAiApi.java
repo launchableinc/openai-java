@@ -1,9 +1,9 @@
-package com.theokanning.openai;
+package com.launchableinc.openai;
 
 /**
- * @deprecated Use {@link com.theokanning.openai.client.OpenAiApi}
+ * @deprecated Use {@link com.launchableinc.openai.client.OpenAiApi}
  */
 @Deprecated
-public interface OpenAiApi extends com.theokanning.openai.client.OpenAiApi {
+public interface OpenAiApi extends com.launchableinc.openai.client.OpenAiApi {
 	// For legacy compatibility only.
 }

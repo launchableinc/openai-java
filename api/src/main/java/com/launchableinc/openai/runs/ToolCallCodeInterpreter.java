@@ -1,4 +1,4 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,8 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ToolCallCodeInterpreter {
-    
-    private String input;
-    
-    private List<ToolCallCodeInterpreterOutput> outputs;
+
+	private String input;
+
+	private List<ToolCallCodeInterpreterOutput> outputs;
 }

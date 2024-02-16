@@ -1,89 +1,90 @@
-package com.theokanning.openai.finetune;
+package com.launchableinc.openai.finetune;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.theokanning.openai.file.File;
+import com.launchableinc.openai.file.File;
 import lombok.Data;
 
 import java.util.List;
 
 /**
  * An object describing a fine-tuned model. Returned by multiple fine-tune requests.
- *
+ * <p>
  * https://beta.openai.com/docs/api-reference/fine-tunes
  */
 @Deprecated
 @Data
 public class FineTuneResult {
-    /**
-     * The ID of the fine-tuning job.
-     */
-    String id;
 
-    /**
-     * The type of object returned, should be "fine-tune".
-     */
-    String object;
+	/**
+	 * The ID of the fine-tuning job.
+	 */
+	String id;
 
-    /**
-     * The name of the base model.
-     */
-    String model;
+	/**
+	 * The type of object returned, should be "fine-tune".
+	 */
+	String object;
 
-    /**
-     * The creation time in epoch seconds.
-     */
-    @JsonProperty("created_at")
-    Long createdAt;
+	/**
+	 * The name of the base model.
+	 */
+	String model;
 
-    /**
-     * List of events in this job's lifecycle. Null when getting a list of fine-tune jobs.
-     */
-    List<FineTuneEvent> events;
+	/**
+	 * The creation time in epoch seconds.
+	 */
+	@JsonProperty("created_at")
+	Long createdAt;
 
-    /**
-     * The ID of the fine-tuned model, null if tuning job is not finished.
-     * This is the id used to call the model.
-     */
-    @JsonProperty("fine_tuned_model")
-    String fineTunedModel;
+	/**
+	 * List of events in this job's lifecycle. Null when getting a list of fine-tune jobs.
+	 */
+	List<FineTuneEvent> events;
 
-    /**
-     * The specified hyper-parameters for the tuning job.
-     */
-    HyperParameters hyperparams;
+	/**
+	 * The ID of the fine-tuned model, null if tuning job is not finished. This is the id used to call
+	 * the model.
+	 */
+	@JsonProperty("fine_tuned_model")
+	String fineTunedModel;
 
-    /**
-     * The ID of the organization this model belongs to.
-     */
-    @JsonProperty("organization_id")
-    String organizationId;
+	/**
+	 * The specified hyper-parameters for the tuning job.
+	 */
+	HyperParameters hyperparams;
 
-    /**
-     * Result files for this fine-tune job.
-     */
-    @JsonProperty("result_files")
-    List<File> resultFiles;
+	/**
+	 * The ID of the organization this model belongs to.
+	 */
+	@JsonProperty("organization_id")
+	String organizationId;
 
-    /**
-     * The status os the fine-tune job. "pending", "succeeded", or "cancelled"
-     */
-    String status;
+	/**
+	 * Result files for this fine-tune job.
+	 */
+	@JsonProperty("result_files")
+	List<File> resultFiles;
 
-    /**
-     * Training files for this fine-tune job.
-     */
-    @JsonProperty("training_files")
-    List<File> trainingFiles;
+	/**
+	 * The status os the fine-tune job. "pending", "succeeded", or "cancelled"
+	 */
+	String status;
 
-    /**
-     * The last update time in epoch seconds.
-     */
-    @JsonProperty("updated_at")
-    Long updatedAt;
+	/**
+	 * Training files for this fine-tune job.
+	 */
+	@JsonProperty("training_files")
+	List<File> trainingFiles;
 
-    /**
-     * Validation files for this fine-tune job.
-     */
-    @JsonProperty("validation_files")
-    List<File> validationFiles;
+	/**
+	 * The last update time in epoch seconds.
+	 */
+	@JsonProperty("updated_at")
+	Long updatedAt;
+
+	/**
+	 * Validation files for this fine-tune job.
+	 */
+	@JsonProperty("validation_files")
+	List<File> validationFiles;
 }

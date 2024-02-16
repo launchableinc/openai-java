@@ -1,4 +1,4 @@
-package com.theokanning.openai.messages.content;
+package com.launchableinc.openai.messages.content;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,13 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 public class Text {
 
-    /**
-     * The data that makes up the text.
-     */
-    String value;
+	/**
+	 * The data that makes up the text.
+	 */
+	String value;
 
-    /**
-     * Text annotations that show additional details
-     */
-    List<Annotation> annotations;
+	/**
+	 * Text annotations that show additional details
+	 */
+	List<Annotation> annotations;
 }

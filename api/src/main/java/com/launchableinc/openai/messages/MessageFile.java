@@ -1,4 +1,4 @@
-package com.theokanning.openai.messages;
+package com.launchableinc.openai.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -14,25 +14,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class MessageFile {
-    /**
-     * The identifier, which can be referenced in API endpoints.
-     */
-    String id;
 
-    /**
-     * The object type, which is always thread.message.file.
-     */
-    String object;
+	/**
+	 * The identifier, which can be referenced in API endpoints.
+	 */
+	String id;
 
-    /**
-     * The Unix timestamp (in seconds) for when the message file was created.
-     */
-    @JsonProperty("created_at")
-    int createdAt;
+	/**
+	 * The object type, which is always thread.message.file.
+	 */
+	String object;
 
-    /**
-     * The ID of the message that the File is attached to.
-     */
-    @JsonProperty("message_id")
-    String messageId;
+	/**
+	 * The Unix timestamp (in seconds) for when the message file was created.
+	 */
+	@JsonProperty("created_at")
+	int createdAt;
+
+	/**
+	 * The ID of the message that the File is attached to.
+	 */
+	@JsonProperty("message_id")
+	String messageId;
 }

@@ -1,4 +1,4 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -19,6 +19,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RunImage {
 
-    @JsonProperty("file_id")
-    private String fileId;
+	@JsonProperty("file_id")
+	private String fileId;
 }

@@ -1,4 +1,4 @@
-package com.theokanning.openai.service;
+package com.launchableinc.openai.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public abstract class ChatFunctionCallMixIn {
 
-    @JsonSerialize(using = ChatFunctionCallArgumentsSerializerAndDeserializer.Serializer.class)
-    @JsonDeserialize(using = ChatFunctionCallArgumentsSerializerAndDeserializer.Deserializer.class)
-    abstract JsonNode getArguments();
+	@JsonSerialize(using = ChatFunctionCallArgumentsSerializerAndDeserializer.Serializer.class)
+	@JsonDeserialize(using = ChatFunctionCallArgumentsSerializerAndDeserializer.Deserializer.class)
+	abstract JsonNode getArguments();
 
 }

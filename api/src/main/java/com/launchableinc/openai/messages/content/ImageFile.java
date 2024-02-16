@@ -1,4 +1,4 @@
-package com.theokanning.openai.messages.content;
+package com.launchableinc.openai.messages.content;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ImageFile {
 
-    /**
-     * The File ID of the image in the message content.
-     */
-    @JsonProperty("file_id")
-    String fileId;
+	/**
+	 * The File ID of the image in the message content.
+	 */
+	@JsonProperty("file_id")
+	String fileId;
 }

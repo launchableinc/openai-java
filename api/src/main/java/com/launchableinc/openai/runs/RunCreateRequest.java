@@ -1,6 +1,6 @@
-package com.theokanning.openai.runs;
+package com.launchableinc.openai.runs;
 
-import com.theokanning.openai.assistants.Tool;
+import com.launchableinc.openai.assistants.Tool;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,14 +14,15 @@ import java.util.Map;
 @AllArgsConstructor
 @Data
 public class RunCreateRequest {
-    String assistantId;
 
-    // Optional
-    String model;
-    
-    String instructions;
-    
-    List<Tool> tools;
-    
-    Map<String, String> metadata;
+	String assistantId;
+
+	// Optional
+	String model;
+
+	String instructions;
+
+	List<Tool> tools;
+
+	Map<String, String> metadata;
 }

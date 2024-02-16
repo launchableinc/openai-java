@@ -1,4 +1,4 @@
-package com.theokanning.openai.messages;
+package com.launchableinc.openai.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -20,62 +20,62 @@ import java.util.Map;
 @AllArgsConstructor
 @Data
 public class Message {
-    /**
-     * The identifier, which can be referenced in API endpoints.
-     */
-    String id;
 
-    /**
-     * The object type, which is always thread.message.
-     */
-    String object;
+	/**
+	 * The identifier, which can be referenced in API endpoints.
+	 */
+	String id;
 
-    /**
-     * The Unix timestamp (in seconds) for when the message was created.
-     */
-    @JsonProperty("created_at")
-    int createdAt;
+	/**
+	 * The object type, which is always thread.message.
+	 */
+	String object;
 
-    /**
-     * The thread ID that this message belongs to.
-     */
-    @JsonProperty("thread_id")
-    String threadId;
+	/**
+	 * The Unix timestamp (in seconds) for when the message was created.
+	 */
+	@JsonProperty("created_at")
+	int createdAt;
 
-    /**
-     * The entity that produced the message. One of user or assistant.
-     */
-    String role;
+	/**
+	 * The thread ID that this message belongs to.
+	 */
+	@JsonProperty("thread_id")
+	String threadId;
 
-    /**
-     * The content of the message in an array of text and/or images.
-     */
-    List<MessageContent> content;
+	/**
+	 * The entity that produced the message. One of user or assistant.
+	 */
+	String role;
 
-    /**
-     * If applicable, the ID of the assistant that authored this message.
-     */
-    @JsonProperty("assistant_id")
-    String assistantId;
+	/**
+	 * The content of the message in an array of text and/or images.
+	 */
+	List<MessageContent> content;
 
-    /**
-     * If applicable, the ID of the run associated with the authoring of this message.
-     */
-    @JsonProperty("run_id")
-    String runId;
+	/**
+	 * If applicable, the ID of the assistant that authored this message.
+	 */
+	@JsonProperty("assistant_id")
+	String assistantId;
 
-    /**
-     * A list of file IDs that the assistant should use.
-     * Useful for tools like retrieval and code_interpreter that can access files.
-     * A maximum of 10 files can be attached to a message.
-     */
-    @JsonProperty("file_ids")
-    List<String> fileIds;
+	/**
+	 * If applicable, the ID of the run associated with the authoring of this message.
+	 */
+	@JsonProperty("run_id")
+	String runId;
 
-    /**
-     * Set of 16 key-value pairs that can be attached to an object.
-     * This can be useful for storing additional information about the object in a structured format.
-     * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
-     */
-    Map<String, String> metadata;
+	/**
+	 * A list of file IDs that the assistant should use. Useful for tools like retrieval and
+	 * code_interpreter that can access files. A maximum of 10 files can be attached to a message.
+	 */
+	@JsonProperty("file_ids")
+	List<String> fileIds;
+
+	/**
+	 * Set of 16 key-value pairs that can be attached to an object. This can be useful for storing
+	 * additional information about the object in a structured format. Keys can be a maximum of 64
+	 * characters long, and values can be a maximum of 512 characters long.
+	 */
+	Map<String, String> metadata;
 }
