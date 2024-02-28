@@ -65,13 +65,13 @@ Your client will need to use snake case to work with the OpenAI API.
 If you're using retrofit, you can import the `client` module and use
 the [OpenAiApi](client/src/main/java/com/launchableincc/openai/OpenAiApi.java).
 You'll have to add your auth token as a header (
-see [AuthenticationInterceptor](client/src/main/java/com/theokanning/openai/AuthenticationInterceptor.java))
+see [AuthenticationInterceptor](client/src/main/java/com/launchableinc/openai/AuthenticationInterceptor.java))
 and set your converter factory to use snake case and only include non-null fields.
 
 ### OpenAiService
 
 If you're looking for the fastest solution, import the `service` module and
-use [OpenAiService](service/src/main/java/com/theokanning/openai/service/OpenAiService.java).
+use [OpenAiService](service/src/main/java/com/launchableinc/openai/service/OpenAiService.java).
 
 > ⚠️The OpenAiService in the client module is deprecated, please switch to the new version in the
 > service module.
