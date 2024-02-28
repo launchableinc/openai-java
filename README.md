@@ -1,7 +1,7 @@
-![Maven Central](https://img.shields.io/maven-central/v/com.theokanning.openai-gpt3-java/client?color=blue)
+![Maven Central](https://img.shields.io/maven-central/v/com.launchableinc.openai-java/client?color=blue)
 
 > ⚠️OpenAI has deprecated all Engine-based APIs.
-> See [Deprecated Endpoints](https://github.com/TheoKanning/openai-java#deprecated-endpoints) below
+> See [Deprecated Endpoints](https://github.com/launchableinc/openai-java#deprecated-endpoints) below
 > for more info.
 
 # OpenAI-Java
@@ -40,14 +40,14 @@ as well as an example project using the service.
 
 ### Gradle
 
-`implementation 'com.theokanning.openai-gpt3-java:<api|client|service>:<version>'`
+`implementation 'com.launchableinc.openai-java:<api|client|service>:<version>'`
 
 ### Maven
 
 ```xml
 
 <dependency>
-  <groupId>com.launchableinc.openai-gpt3-java</groupId>
+  <groupId>com.launchableinc.openai-java</groupId>
   <artifactId>{api|client|service}</artifactId>
   <version>version</version>
 </dependency>
@@ -63,7 +63,7 @@ Your client will need to use snake case to work with the OpenAI API.
 ### Retrofit client
 
 If you're using retrofit, you can import the `client` module and use
-the [OpenAiApi](client/src/main/java/com/theokanning/openai/OpenAiApi.java).  
+the [OpenAiApi](client/src/main/java/com/launchableincc/openai/OpenAiApi.java).
 You'll have to add your auth token as a header (
 see [AuthenticationInterceptor](client/src/main/java/com/theokanning/openai/AuthenticationInterceptor.java))
 and set your converter factory to use snake case and only include non-null fields.
@@ -217,7 +217,7 @@ stream: [OpenAiApiFunctionsWithStreamExample.java](example/src/main/java/example
 ### Streaming thread shutdown
 
 If you want to shut down your process immediately after streaming responses,
-call `OpenAiService.shutdownExecutor()`.  
+call `OpenAiService.shutdownExecutor()`.
 This is not necessary for non-streaming calls.
 
 ## Running the example project
@@ -252,7 +252,7 @@ Or functions with 'stream' mode enabled:
 ### Does this support GPT-4?
 
 Yes! GPT-4 uses the ChatCompletion Api, and you can see the latest model
-options [here](https://platform.openai.com/docs/models/gpt-4).  
+options [here](https://platform.openai.com/docs/models/gpt-4).
 GPT-4 is currently in a limited beta (as of 4/1/23), so make sure you have access before trying to
 use it.
 
@@ -270,8 +270,8 @@ Make sure that OpenAI is available in your country.
 
 ### Why doesn't OpenAiService support x configuration option?
 
-Many projects use OpenAiService, and in order to support them best I've kept it extremely simple.  
-You can create your own OpenAiApi instance to customize headers, timeouts, base urls etc.  
+Many projects use OpenAiService, and in order to support them best I've kept it extremely simple.
+You can create your own OpenAiApi instance to customize headers, timeouts, base urls etc.
 If you want features like retry logic and async calls, you'll have to make an `OpenAiApi` instance
 and call it directly instead of using `OpenAiService`
 
