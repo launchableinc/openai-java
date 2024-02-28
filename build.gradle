@@ -1,11 +1,14 @@
 plugins {
-    id "com.vanniktech.maven.publish" version "0.19.0" apply false
+    id "com.vanniktech.maven.publish" version "0.22.0"
 }
+
+import com.vanniktech.maven.publish.SonatypeHost
 
 allprojects {
     plugins.withId("com.vanniktech.maven.publish") {
-        mavenPublish {
-            sonatypeHost = "S01"
+        mavenPublishing {
+        // Want to publish to so1.oss.sonatype.org
+        publishToMavenCentral(SonatypeHost.S01)
         }
     }
 }
