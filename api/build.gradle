@@ -7,6 +7,8 @@ dependencies {
     api libs.jtokkit
     compileOnly libs.lombok
     annotationProcessor libs.lombok
+    testCompileOnly libs.lombok // Ensure Lombok is available for test compilation
+    testAnnotationProcessor libs.lombok // Process Lombok annotations in test code
 
     testImplementation libs.jacksonDatabind
     testImplementation(platform(libs.junitBom))
