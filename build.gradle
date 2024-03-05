@@ -7,8 +7,9 @@ import com.vanniktech.maven.publish.SonatypeHost
 allprojects {
     plugins.withId("com.vanniktech.maven.publish") {
         mavenPublishing {
-        // Want to publish to so1.oss.sonatype.org
-        publishToMavenCentral(SonatypeHost.S01)
+          // Want to publish to so1.oss.sonatype.org
+          publishToMavenCentral(SonatypeHost.S01)
+          signAllPublications()
         }
     }
 }
