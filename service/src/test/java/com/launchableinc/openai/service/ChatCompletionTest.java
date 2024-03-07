@@ -2,9 +2,12 @@ package com.launchableinc.openai.service;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.launchableinc.openai.completion.chat.*;
+import com.launchableinc.openai.completion.chat.ChatResponseFormat.ResponseFormat;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -75,6 +78,37 @@ class ChatCompletionTest {
 		List<ChatCompletionChoice> choices = service.createChatCompletion(chatCompletionRequest)
 				.getChoices();
 		assertEquals(5, choices.size());
+	}
+
+	@Test
+	void createChatCompletion_with_json_mode() {
+		final List<ChatMessage> messages = new ArrayList<>();
+		final ChatMessage systemMessage = new ChatMessage(ChatMessageRole.SYSTEM.value(),
+				"Generate a random name and age json object. name field is a object that has first and last fields. age is a number.");
+		messages.add(systemMessage);
+
+		ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
+				.builder()
+				.model("gpt-3.5-turbo-1106")
+				.messages(messages)
+				.maxTokens(50)
+				.logitBias(new HashMap<>())
+				.responseFormat(ChatResponseFormat.builder().type(ResponseFormat.JSON).build())
+				.build();
+
+		ChatCompletionChoice choices = service.createChatCompletion(chatCompletionRequest)
+				.getChoices().get(0);
+		assertTrue(isValidJson(choices.getMessage().getContent()));
+	}
+
+	private boolean isValidJson(String jsonString) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			objectMapper.readTree(jsonString);
+			return true;
+		} catch (JsonProcessingException e) {
+			return false;
+		}
 	}
 
 	@Test
