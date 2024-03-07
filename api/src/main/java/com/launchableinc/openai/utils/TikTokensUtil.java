@@ -242,6 +242,15 @@ public class TikTokensUtil {
 	@AllArgsConstructor
 	public enum ModelEnum {
 		/**
+		 * see: https://openai.com/blog/new-embedding-models-and-api-updates
+		 */
+		GPT_3_5_TURBO_0125("gpt-3.5-turbo-0125"),
+		/**
+		 * GPT-3.5 Turbo model with improved instruction following, JSON mode, reproducible outputs,
+		 * parallel function calling, and more. Returns a maximum of 4,096 output tokens.
+		 */
+		GPT_3_5_TURBO_1106("gpt-3.5-turbo-1106"),
+		/**
 		 * gpt-3.5-turbo
 		 */
 		GPT_3_5_TURBO("gpt-3.5-turbo"),
@@ -249,6 +258,17 @@ public class TikTokensUtil {
 		 * Temporary model, not recommended for use.
 		 */
 		GPT_3_5_TURBO_0301("gpt-3.5-turbo-0301"),
+
+		/**
+		 * The latest GPT-4 model intended to reduce cases of “laziness” where the model doesn’t
+		 * complete a task. Returns a maximum of 4,096 output see:
+		 * https://openai.com/blog/new-embedding-models-and-api-updates
+		 */
+		GPT_4_0125_PREVIEW("gpt-4-0125-preview"),
+		/**
+		 * Currently points to gpt-4-0125-preview.
+		 */
+		GPT_4_TURBO_PREVIEW("gpt-4-turbo-preview"),
 		/**
 		 * GPT4.0
 		 */
