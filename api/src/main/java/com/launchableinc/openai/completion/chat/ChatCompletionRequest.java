@@ -28,6 +28,14 @@ public class ChatCompletionRequest {
 	List<ChatMessage> messages;
 
 	/**
+	 * An object specifying the format that the model must output. Compatible with GPT-4 Turbo and all
+	 * GPT-3.5 Turbo models newer than gpt-3.5-turbo-1106.
+	 * https://platform.openai.com/docs/api-reference/chat/create#chat-create-response_format
+	 */
+	@JsonProperty("response_format")
+	ChatResponseFormat responseFormat;
+
+	/**
 	 * What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output
 	 * more random, while lower values like 0.2 will make it more focused and deterministic.<br> We
 	 * generally recommend altering this or top_p but not both.
