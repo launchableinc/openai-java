@@ -1,5 +1,7 @@
 # Changelog
 
+## [v0.3.0](https://github.com/launchableinc/openai-java/compare/v0.2.1...v0.3.0) - 2024-03-08
+
 ## [v0.2.1](https://github.com/launchableinc/openai-java/compare/v0.2.0...v0.2.1) - 2024-03-08
 - update lib versions by @Konboi in https://github.com/launchableinc/openai-java/pull/11
 
