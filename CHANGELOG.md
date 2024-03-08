@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.2.1](https://github.com/launchableinc/openai-java/compare/v0.2.0...v0.2.1) - 2024-03-08
+- update lib versions by @Konboi in https://github.com/launchableinc/openai-java/pull/11
+
 ## [v0.2.0](https://github.com/launchableinc/openai-java/compare/v0.1.0...v0.2.0) - 2024-03-07
 - Introduce tag pr by @Konboi in https://github.com/launchableinc/openai-java/pull/4
 - Support json mode by @Konboi in https://github.com/launchableinc/openai-java/pull/6
