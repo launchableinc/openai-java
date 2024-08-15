@@ -101,6 +101,27 @@ class ChatCompletionTest {
 		assertTrue(isValidJson(choices.getMessage().getContent()));
 	}
 
+	@Test
+	void createChatCompletion_with_gpt4o() {
+		final List<ChatMessage> messages = new ArrayList<>();
+		final ChatMessage systemMessage = new ChatMessage(ChatMessageRole.SYSTEM.value(),
+				"You are a cat and will speak as such.");
+		messages.add(systemMessage);
+
+		ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
+				.builder()
+				.model("gpt-4o")
+				.messages(messages)
+				.n(5)
+				.maxTokens(50)
+				.logitBias(new HashMap<>())
+				.build();
+
+		List<ChatCompletionChoice> choices = service.createChatCompletion(chatCompletionRequest)
+				.getChoices();
+		assertEquals(5, choices.size());
+	}
+
 	private boolean isValidJson(String jsonString) {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
