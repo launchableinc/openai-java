@@ -4,6 +4,7 @@ import com.knuddels.jtokkit.Encodings;
 import com.knuddels.jtokkit.api.Encoding;
 import com.knuddels.jtokkit.api.EncodingRegistry;
 import com.knuddels.jtokkit.api.EncodingType;
+import com.knuddels.jtokkit.api.IntArrayList;
 import com.knuddels.jtokkit.api.ModelType;
 import com.launchableinc.openai.completion.chat.ChatMessage;
 import lombok.AllArgsConstructor;
@@ -46,7 +47,7 @@ public class TikTokensUtil {
 	 * @return Encoding array
 	 */
 	public static List<Integer> encode(Encoding enc, String text) {
-		return isBlank(text) ? new ArrayList<>() : enc.encode(text);
+		return isBlank(text) ? new ArrayList<>() : enc.encode(text).boxed();
 	}
 
 	/**
@@ -69,7 +70,7 @@ public class TikTokensUtil {
 	 * @return Text information corresponding to the encoding array.
 	 */
 	public static String decode(Encoding enc, List<Integer> encoded) {
-		return enc.decode(encoded);
+		return enc.decode(toIntArrayList(encoded));
 	}
 
 	/**
@@ -94,7 +95,7 @@ public class TikTokensUtil {
 			return new ArrayList<>();
 		}
 		Encoding enc = getEncoding(encodingType);
-		List<Integer> encoded = enc.encode(text);
+		List<Integer> encoded = enc.encode(text).boxed();
 		return encoded;
 	}
 
@@ -119,7 +120,7 @@ public class TikTokensUtil {
 	 */
 	public static String decode(EncodingType encodingType, List<Integer> encoded) {
 		Encoding enc = getEncoding(encodingType);
-		return enc.decode(encoded);
+		return enc.decode(toIntArrayList(encoded));
 	}
 
 
@@ -147,7 +148,7 @@ public class TikTokensUtil {
 		if (Objects.isNull(enc)) {
 			return new ArrayList<>();
 		}
-		List<Integer> encoded = enc.encode(text);
+		List<Integer> encoded = enc.encode(text).boxed();
 		return encoded;
 	}
 
@@ -209,7 +210,16 @@ public class TikTokensUtil {
 	 */
 	public static String decode(String modelName, List<Integer> encoded) {
 		Encoding enc = getEncoding(modelName);
-		return enc.decode(encoded);
+		return enc.decode(toIntArrayList(encoded));
+	}
+
+	private static IntArrayList toIntArrayList(List<Integer> encoded) {
+		IntArrayList intArrayList = new IntArrayList(encoded.size());
+		for (Integer e : encoded) {
+			intArrayList.add(e);
+		}
+
+		return intArrayList;
 	}
 
 
