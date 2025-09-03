@@ -1,11 +1,12 @@
 [versions]
 jackson = "2.16.1"
 retrofit = "2.9.0"
+victoolsJsonSchema = "4.38.0"
+javaxValidation = "2.0.1.Final"
 
 [libraries]
 jacksonDatabind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
 jacksonAnnotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
-jacksonJsonSchema = { module = "com.kjetland:mbknor-jackson-jsonschema_2.12", version = "1.0.34" }
 lombok = { module = "org.projectlombok:lombok", version = "1.18.30" }
 junitBom = { module = "org.junit:junit-bom", version = "5.8.2" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
@@ -13,3 +14,6 @@ retrofitJackson = { module = "com.squareup.retrofit2:converter-jackson", version
 retrofitRxJava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "retrofit" }
 retrofitMock = { module = "com.squareup.retrofit2:retrofit-mock", version.ref = "retrofit" }
 jtokkit = { module = "com.knuddels:jtokkit", version = "1.1.0" }
+victoolsJsonSchemaGenerator = { module = "com.github.victools:jsonschema-generator", version.ref = "victoolsJsonSchema" }
+victoolsJsonSchemaJackson = { module = "com.github.victools:jsonschema-module-jackson", version.ref = "victoolsJsonSchema" }
+javaxValidationApi = { module = "javax.validation:validation-api", version.ref = "javaxValidation" }

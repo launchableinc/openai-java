@@ -3,18 +3,22 @@ package com.launchableinc.openai.service;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.kjetland.jackson.jsonSchema.JsonSchemaConfig;
-import com.kjetland.jackson.jsonSchema.JsonSchemaGenerator;
+import com.github.victools.jsonschema.generator.SchemaGenerator;
+import com.github.victools.jsonschema.generator.SchemaGeneratorConfigBuilder;
+import com.github.victools.jsonschema.generator.SchemaVersion;
+import com.github.victools.jsonschema.module.jackson.JacksonModule;
+import com.github.victools.jsonschema.module.jackson.JacksonOption;
 
 import java.io.IOException;
 
 public class ChatFunctionParametersSerializer extends JsonSerializer<Class<?>> {
 
-	private final ObjectMapper mapper = new ObjectMapper();
-	private final JsonSchemaConfig config = JsonSchemaConfig.vanillaJsonSchemaDraft4();
-	private final JsonSchemaGenerator jsonSchemaGenerator = new JsonSchemaGenerator(mapper, config);
+	private final SchemaGenerator schemaGenerator = new SchemaGenerator(
+			new SchemaGeneratorConfigBuilder(SchemaVersion.DRAFT_7)
+					.with(new JacksonModule(JacksonOption.RESPECT_JSONPROPERTY_REQUIRED))
+					.build()
+	);
 
 	@Override
 	public void serialize(Class<?> value, JsonGenerator gen, SerializerProvider serializers)
@@ -23,7 +27,7 @@ public class ChatFunctionParametersSerializer extends JsonSerializer<Class<?>> {
 			gen.writeNull();
 		} else {
 			try {
-				JsonNode schema = jsonSchemaGenerator.generateJsonSchema(value);
+				JsonNode schema = schemaGenerator.generateSchema(value);
 				gen.writeObject(schema);
 			} catch (Exception e) {
 				throw new RuntimeException("Failed to generate JSON Schema", e);

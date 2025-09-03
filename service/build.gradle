@@ -6,7 +6,9 @@ dependencies {
     api libs.retrofit
     implementation libs.retrofitRxJava2
     implementation libs.retrofitJackson
-    implementation libs.jacksonJsonSchema
+    implementation libs.victoolsJsonSchemaGenerator
+    implementation libs.victoolsJsonSchemaJackson
+    implementation libs.javaxValidationApi
 
     testImplementation(platform(libs.junitBom))
     testImplementation 'org.junit.jupiter:junit-jupiter'
