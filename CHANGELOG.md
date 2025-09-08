@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.4.2](https://github.com/launchableinc/openai-java/compare/v0.4.1...v0.4.2) - 2025-09-08
+- Upgrade deploy function by @yoshiori in https://github.com/launchableinc/openai-java/pull/22
+
 ## [v0.4.1](https://github.com/launchableinc/openai-java/compare/v0.4.0...v0.4.1) - 2025-09-03
 - Change JSON Schema lib by @yoshiori in https://github.com/launchableinc/openai-java/pull/20
 
