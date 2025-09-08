@@ -1,13 +1,58 @@
 plugins {
-    id "com.vanniktech.maven.publish" version "0.34.0"
+    id 'maven-publish'
 }
 
-allprojects {
-    plugins.withId("com.vanniktech.maven.publish") {
-        mavenPublishing {
-          // Publish to Central Portal (new Maven Central publishing system)
-          publishToMavenCentral()
-          signAllPublications()
+subprojects {
+    apply plugin: 'maven-publish'
+
+    plugins.withId('java') {
+        publishing {
+            repositories {
+                maven {
+                    name = "GitHubPackages"
+                    url = "https://maven.pkg.github.com/launchableinc/openai-java"
+                    credentials {
+                        username = System.getenv("GITHUB_ACTOR")
+                        password = System.getenv("GITHUB_TOKEN")
+                    }
+                }
+            }
+
+            publications {
+                maven(MavenPublication) {
+                    from components.java
+
+                    groupId = 'com.launchableinc.openai-java'
+                    artifactId = project.name
+                    version = project.version
+
+                    pom {
+                        name = 'OpenAI Java Client'
+                        description = 'Java client library for OpenAI API'
+                        url = 'https://github.com/launchableinc/openai-java'
+
+                        licenses {
+                            license {
+                                name = 'The MIT License'
+                                url = 'https://www.mit.edu/~amini/LICENSE.md'
+                            }
+                        }
+
+                        developers {
+                            developer {
+                                id = 'engineering'
+                                name = 'Engineering'
+                            }
+                        }
+
+                        scm {
+                            connection = 'scm:git:git@github.com:launchableinc/openai-java.git'
+                            developerConnection = 'scm:git:git@github.com:launchableinc/openai-java.git'
+                            url = 'https://github.com/launchableinc/openai-java'
+                        }
+                    }
+                }
+            }
         }
     }
 }
