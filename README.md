@@ -1,4 +1,4 @@
-![Maven Central](https://img.shields.io/maven-central/v/com.launchableinc.openai-java/client?color=blue)
+[![GitHub Packages](https://img.shields.io/badge/GitHub%20Packages-Available-green)](https://github.com/launchableinc/openai-java/packages)
 
 > ⚠️OpenAI has deprecated all Engine-based APIs.
 > See [Deprecated Endpoints](https://github.com/launchableinc/openai-java#deprecated-endpoints) below
