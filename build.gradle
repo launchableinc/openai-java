@@ -24,7 +24,7 @@ subprojects {
 
                     groupId = 'com.launchableinc.openai-java'
                     artifactId = project.name
-                    version = project.version
+                    version = project.VERSION_NAME
 
                     pom {
                         name = 'OpenAI Java Client'
