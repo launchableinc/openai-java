@@ -26,9 +26,6 @@ jobs:
     needs: tagpr
     if: needs.tagpr.outputs.tag != '' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
@@ -40,7 +37,10 @@ jobs:
       uses: gradle/actions/setup-gradle@v4
     - name: Test
       run: ./gradlew test
-    - name: Publish to GitHub Packages
-      run: ./gradlew publish
+    - name: Publish to Maven Central
+      run: ./gradlew publishAllPublicationsToMavenCentralRepository
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALUSERNAME }}
+        ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.ORG_GRADLE_PROJECT_MAVENCENTRALPASSWORD }}
+        ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEY }}
+        ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGINMEMORYKEYPASSWORD }}
