@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.4.5](https://github.com/launchableinc/openai-java/compare/v0.4.4...v0.4.5) - 2025-09-09
+- fix deploy issue by @yoshiori in https://github.com/launchableinc/openai-java/pull/28
+
 ## [v0.4.4](https://github.com/launchableinc/openai-java/compare/v0.4.3...v0.4.4) - 2025-09-09
 - Fix version issue by @launchableinc-ci in https://github.com/launchableinc/openai-java/pull/26
 
