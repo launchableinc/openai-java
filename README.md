@@ -1,4 +1,4 @@
-[![GitHub Packages](https://img.shields.io/badge/GitHub%20Packages-Available-green)](https://github.com/launchableinc/openai-java/packages)
+![Maven Central](https://img.shields.io/maven-central/v/com.launchableinc.openai-java/service?color=blue)
 
 > ⚠️OpenAI has deprecated all Engine-based APIs.
 > See [Deprecated Endpoints](https://github.com/launchableinc/openai-java#deprecated-endpoints) below
@@ -38,20 +38,40 @@ as well as an example project using the service.
 
 ## Importing
 
+This library is available through [Maven Central](https://central.sonatype.com/search?q=g:com.launchableinc.openai-java) - **no authentication required!**
+
 ### Gradle
 
-`implementation 'com.launchableinc.openai-java:<api|client|service>:<version>'`
+Simply add the dependency to your `build.gradle`:
+
+```gradle
+dependencies {
+    implementation 'com.launchableinc.openai-java:service:0.4.1'
+    // Or specific modules:
+    implementation 'com.launchableinc.openai-java:api:0.4.1'
+    implementation 'com.launchableinc.openai-java:client:0.4.1'
+}
+```
 
 ### Maven
 
-```xml
+Add the dependency to your `pom.xml`:
 
+```xml
 <dependency>
-  <groupId>com.launchableinc.openai-java</groupId>
-  <artifactId>{api|client|service}</artifactId>
-  <version>version</version>
+    <groupId>com.launchableinc.openai-java</groupId>
+    <artifactId>service</artifactId>
+    <version>0.4.1</version>
+</dependency>
+<!-- Or specific modules -->
+<dependency>
+    <groupId>com.launchableinc.openai-java</groupId>
+    <artifactId>api</artifactId>
+    <version>0.4.1</version>
 </dependency>
 ```
+
+That's it! No additional repository configuration or authentication is needed since the library is available on Maven Central.
 
 ## Usage
 
