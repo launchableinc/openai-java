@@ -6,7 +6,7 @@ allprojects {
     plugins.withId("com.vanniktech.maven.publish") {
         mavenPublishing {
             // Publish to Maven Central via Central Portal (no authentication required for users!)
-            publishToMavenCentral()
+            publishToMavenCentral(true)
             signAllPublications()
         }
     }
